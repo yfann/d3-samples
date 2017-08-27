@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="lib/d3.js"></script>
+    <script>
+        var data=[5,10,15,20,25];
+        d3.select('body').selectAll('p')
+            .data(data).enter()
+            .append('p').text('pp').style("color", function(d) {
+            if (d > 15) { // 阈值是 15
+            return "red";
+            } else {
+            return "black";
+            }
+            });
+    </script>
+</body>
+</html>

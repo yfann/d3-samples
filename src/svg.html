@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script src="lib/d3.js"></script>
+        <script>
+            var dataset = []; // 初始化空数组
+            for (var i = 0; i < 25; i++) { // 循环 25 次
+            var newNumber = Math.random() * 30; // 生成介于 0 到 30 之间的随机数
+            dataset.push(newNumber); // 把新数值添加到数组中
+            }
+
+            var w = 500;
+            var h = 100;
+            var barPadding = 1;
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h);
+
+        svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i) {
+                return i * (w / dataset.length);
+                })
+                .attr("y", function(d) {
+                return h - d*4; // 高度减数据值
+                })
+                .attr("width", w / dataset.length - barPadding)
+                .attr("height", function(d) {
+                   return d*4; // <-- 放大 4 倍！
+                }).attr("fill", "teal");
+                
+                svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append('text')
+                .text(function(d){
+                    return d;
+                }).attr("x", function(d, i) {
+                    return i * (w / dataset.length) + 5; // +5
+                    })
+                    .attr("y", function(d) {
+                    return h - (d * 4) + 15; // +15
+                    }).attr("font-family", "sans-serif")
+                    .attr("font-size", "11px")
+                    .attr("fill", "white");     
+        </script>
+</body>
+</html>

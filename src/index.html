@@ -35,7 +35,7 @@ var simulation = d3.forceSimulation()
 d3.select("input[type=range]")
     .on("input", inputted);
 
-d3.json("lib/miserables.json", function(error, graph) {
+d3.json("data/miserables.json", function(error, graph) {
   if (error) throw error;
 
   simulation
